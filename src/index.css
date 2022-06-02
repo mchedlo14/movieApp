@@ -7,6 +7,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #22254b;
+  background-color: #18191A;
   color: white;
 }
 
@@ -18,6 +19,7 @@ body {
   border-radius: 3px;
   box-sizing: 3px 3px 3px rgb(0,0,0,0.1);
   overflow: hidden;
+  background-color: #1e1f20;
   position: relative;
 }
 .movie:hover .movie-over{
@@ -30,6 +32,7 @@ body {
 
 .movie-container{
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
 }
 .movie-info{
@@ -37,7 +40,6 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-
 }
 .movie-info h3{
   margin: 0;
@@ -60,10 +62,11 @@ body {
 }
 header{
   background-color: #373b69;
-  padding: 1rem;
+  padding: 0.5rem;
   display: flex;
-  justify-content: flex-end;
-
+  justify-content: space-around;
+  align-items: center;
+  background-color: #18191A;
 }
 .root{
   display: flex;
@@ -71,12 +74,16 @@ header{
 }
 .search{
   padding: 0.5rem 1.5rem;
-  background-color: transparent;
-  border: 2px solid #22254b;
-  border-radius: 50px;
+  border: 1px solid white;
+  border-radius: 6px;
   font-family: inherit;
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: white;
+  height: 40px;
+  color:#18191A;
+}
+::placeholder{
+  color: #18191A;
 }
 .search:focus{
   outline: none;

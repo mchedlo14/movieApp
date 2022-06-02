@@ -8,7 +8,7 @@ const Movie = ({title,poster_path,overview,vote_average}) => (
         <img src={IMG_API + poster_path} alt={title} />
         <div className='movie-info'>
             <h3>{title}</h3>
-            <span>{vote_average}</span>    
+            <span>{vote_average} IMDb</span>    
         </div>
         <div className='movie-over'>
             <h2>overview:</h2>
