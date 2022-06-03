@@ -34,6 +34,7 @@ body {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  margin-top: 80px;
 }
 .movie-info{
   display: flex;
@@ -87,4 +88,16 @@ header{
 }
 .search:focus{
   outline: none;
+}
+.swiper-container{
+  width: 100%;
+  height: 200px;
+}
+.sw-container{
+  margin-top: 100px;
+}
+@media(max-width:768px){
+  .movie-container{
+    margin-top: 0px;
+  }
 }

@@ -1,8 +1,7 @@
 import React, { useState,useEffect } from 'react'
 import Movie from './components/Movie';
-// import { Swiper, SwiperSlide } from 'swiper/react';
-// import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
-import 'swiper/css';
+import Slider from './components/Slider';
+
 
 
 const FEATURED_API = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=fb1f301ce530a9bb513825b9f44b9df1'
@@ -21,7 +20,6 @@ const App = () => {
     })
   },[])
 
-
   const handleOnSubmit = (e) => {
     e.preventDefault();
     
@@ -30,7 +28,6 @@ const App = () => {
       setMovies(data.results)
     })
   }
-  console.log(movies)
 
   return (
     <>
@@ -47,12 +44,16 @@ const App = () => {
         </header>
       </form>
 
+      <div className='sw-container'>
+        <Slider movieData = {movies}/>
+      </div>
+
       <div className="movie-container">
         {movies.length > 0 &&
           movies.map((movie) => <Movie key={movie.id} {...movie} />)}
       </div>
 
-      <h5 style={{'textAlign':'center'}}>CopyRight by Levan Mtchedlishvili</h5>
+      <h5 style={{ textAlign: "center" }}>CopyRight by Levan Mtchedlishvili</h5>
     </>
   );
 }

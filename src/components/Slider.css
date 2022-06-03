@@ -1,0 +1,9 @@
+.swiper-wrapper{
+    margin: auto;
+    width: 90%;
+}
+@media(max-width:768px){
+    .swiper-wrapper{
+        display: none;
+    }
+}
