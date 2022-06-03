@@ -8,7 +8,7 @@ const IMG_API = 'https://image.tmdb.org/t/p/w200'
 const Slider = (props) => {
     console.log(props.movieData)
   return (
-    <div>
+    <div className='slider-parent'>
       <Swiper spaceBetween={50} slidesPerView={4}>
         {props.movieData.length > 0 &&
           props.movieData.map((movie) => (

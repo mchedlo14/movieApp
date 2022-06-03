@@ -33,7 +33,10 @@ const App = () => {
     <>
       <form onSubmit={handleOnSubmit}>
         <header>
-          <h3>The Movie App</h3>
+          <div className='title-container'>
+            <h3 className='header'>The Movie App</h3>
+            <p className='title'>Find your movies</p>
+          </div>
           <input
             className="search"
             type="text"
