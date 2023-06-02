@@ -1,65 +1,122 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import Movie from './components/Movie';
 import Slider from './components/Slider';
+import Header from './components/Header/Header';
 
+const FEATURED_API = 'https://api.themoviedb.org/3/discover/movie?api_key=fb1f301ce530a9bb513825b9f44b9df1&page=';
 
-
-const FEATURED_API = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=fb1f301ce530a9bb513825b9f44b9df1'
-
-const SEARCH_API = "https://api.themoviedb.org/3/search/movie?&api_key=fb1f301ce530a9bb513825b9f44b9df1&query="
+const SEARCH_API =
+  'https://api.themoviedb.org/3/search/movie?&api_key=fb1f301ce530a9bb513825b9f44b9df1&query=';
 
 const App = () => {
+  const [movies, setMovies] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const [movies,setMovies] = useState([])
-  const [searchTerm,setSearchTerm] = useState('')
+  const fetchMovieData = async (page) => {
+    try {
+      const response = await fetch(FEATURED_API + page);
+      const data = await response.json();
+      setTotalPages(data.total_pages);
+      return data.results;
+    } catch (error) {
+      console.log(error);
+      return [];
+    }
+  };
+
+  const fetchSearchedMovieData = async () => {
+    try {
+      const response = await fetch(SEARCH_API + searchTerm);
+      const data = await response.json();
+      setMovies(data.results);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const loadMoreMovies = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage((prevPage) => prevPage + 1);
+    }
+  };
 
   useEffect(() => {
-    fetch(FEATURED_API).then(res => res.json())
-    .then(data => {
-      setMovies(data.results)
-    })
-  },[])
+    const fetchMovies = async () => {
+      setIsLoading(true);
+      const movieData = await fetchMovieData(currentPage);
+      setMovies((prevMovies) => [...prevMovies, ...movieData]);
+      setIsLoading(false);
+    };
+
+    fetchMovies();
+  }, [currentPage]);
+
+  useEffect(() => {
+    if (searchTerm.trim() !== '') {
+      fetchSearchedMovieData();
+    } else {
+      setCurrentPage(1);
+      setMovies([]);
+    }
+  }, [searchTerm]);
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    
-    fetch(SEARCH_API + searchTerm).then(res => res.json())
-    .then(data => {
-      setMovies(data.results)
-    })
-  }
+    setCurrentPage(1);
+  };
+
+  const handleIntersection = (entries) => {
+    const target = entries[0];
+    if (target.isIntersecting) {
+      loadMoreMovies();
+    }
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(handleIntersection, {
+      root: null,
+      rootMargin: '0px',
+      threshold: 1.0,
+    });
+
+    if (isLoading) return;
+
+    const loader = document.getElementById('loader');
+    if (loader) {
+      observer.observe(loader);
+    }
+
+    return () => {
+      if (loader) {
+        observer.unobserve(loader);
+      }
+    };
+  }, [isLoading]);
 
   return (
     <>
       <form onSubmit={handleOnSubmit}>
-        <header>
-          <div className='title-container'>
-            <h3 className='header'>The Movie App</h3>
-            <p className='title'>Find your movies</p>
-          </div>
-          <input
-            className="search"
-            type="text"
-            placeholder="Search..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </header>
+        <Header setSearchTerm={setSearchTerm} searchTerm={searchTerm} />
       </form>
 
-      <div className='sw-container'>
-        <Slider movieData = {movies}/>
-      </div>
-
       <div className="movie-container">
-        {movies.length > 0 &&
-          movies.map((movie) => <Movie key={movie.id} {...movie} />)}
+        <Movie movieData={movies} />
       </div>
 
-      <h5 style={{ textAlign: "center" }}>CopyRight by Levan Mtchedlishvili</h5>
+      {isLoading && <div id="loader">Loading...</div>}
+
+      {currentPage < totalPages && !isLoading && (
+        <div id="loader" style={{ marginTop: '20px' }}>
+          <button onClick={loadMoreMovies}>Load More</button>
+        </div>
+      )}
+
+      <h5 style={{ textAlign: 'center' }}>CopyRight by Levan Mtchedlishvili</h5>
     </>
   );
-}
+};
 
-
-export default App
+export default App;
