@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Movie from './components/movie/Movie';
-import Header from './components/Header/Header';
 import './App.css'
 import downArrowIcon from './assets/icons/down-arrow.svg'
+import searchIcon from './assets/icons/search.svg'
 import Loader from './components/Loader/Loader';
 
 
@@ -103,7 +103,13 @@ const App = () => {
   return (
     <>
       <form onSubmit={handleOnSubmit}>
-        <Header setSearchTerm={setSearchTerm} searchTerm={searchTerm} />
+        <input
+          className="search"
+          type="text"
+          placeholder="Search Movie Name"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />  
       </form>
 
       <div className="movie-container">

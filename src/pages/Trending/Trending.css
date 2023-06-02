@@ -1,6 +1,6 @@
 
 
-  .arrow-icon{
+.arrow-icon{
     cursor: pointer;
   }
   .loader-container{
@@ -88,9 +88,6 @@
     margin-left: 50%;
     transform: translateX(-50%);
     margin-top: 10px;
-  }
-  .search:focus{
-    border: 5px solid #252956;
   }
   ::placeholder{
     color: #18191A;

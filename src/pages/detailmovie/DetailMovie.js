@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './DetailMovie.css';
-import Header from '../components/Header/Header';
+import Header from '../../components/Layout/Header/Header';
 
 const IMG_API = 'https://image.tmdb.org/t/p/w1280';
 const API_KEY = 'fb1f301ce530a9bb513825b9f44b9df1';
@@ -43,7 +43,6 @@ const DetailMovie = () => {
 
   return (
     <>
-    <Header />
       <div className="container">
         {movie && (
           <div

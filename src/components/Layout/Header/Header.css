@@ -1,11 +1,11 @@
 header{
     background-color: #252956;
-    padding: 0.5rem;
+    padding: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 120px;
+    padding-right: 120px;
   }
   input{
     width: 300px;
@@ -22,4 +22,17 @@ header{
   }
   .logo{
     cursor: pointer;
+  }
+
+  li{
+    list-style: none;
+    cursor: pointer;
+  }
+li:hover{
+  scale: 1.05;
+  transition: all 0.5s;
+}
+  ul{
+    display: flex;
+    gap: 15px;
   }
