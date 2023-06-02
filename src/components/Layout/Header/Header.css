@@ -1,15 +1,14 @@
 header{
-    background-color: #252956;
+    background-color: #191c40;
     padding: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding-left: 120px;
     padding-right: 120px;
+    width: 100%;
   }
-  input{
-    width: 300px;
-  }
+
   .title-container{
     display: flex;
     flex-direction: column;

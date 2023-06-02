@@ -7,7 +7,6 @@ const Header = ({ setSearchTerm, searchTerm }) => {
     return (
         <header>
             <div className='title-container'>
-                {/* <h3 className='logo' onClick={() => navigate('/')}>The Movie App</h3> */}
                 <img src={logo} alt='logo' onClick={() => navigate('/')}/>
             </div>
 

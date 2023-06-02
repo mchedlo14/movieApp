@@ -82,8 +82,7 @@
 }
 
 .search {
-  width: 600px;
-  padding: 0.5rem 1.5rem;
+  padding: 0.5rem 1rem;
   border: 1px solid white;
   border-radius: 6px;
   font-family: inherit;
@@ -97,7 +96,8 @@
 }
 
 .search:focus {
-  border: 5px solid #252956;
+  border: 3px solid #fff;
+  outline: auto;
 }
 
 ::placeholder {
@@ -154,4 +154,7 @@
   border: 0;
   transition: .8s;
   color: #fff;
+}
+.search-icon{
+  position: absolute;
 }
