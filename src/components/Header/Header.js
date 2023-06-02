@@ -1,10 +1,12 @@
 import React from 'react'
 import './Header.css'
+import { useNavigate } from 'react-router-dom'
 const Header = ({setSearchTerm,searchTerm}) => {
+    const navigate = useNavigate()
     return (
         <header>
             <div className='title-container'>
-                <h3 className='header'>The Movie App</h3>
+                <h3 className='logo' onClick={() => navigate('/')}>The Movie App</h3>
                 <p className='title'>Find your movies</p>
             </div>
             <input

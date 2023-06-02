@@ -20,3 +20,6 @@ header{
     font-size: 12px;
     cursor:default;
   }
+  .logo{
+    cursor: pointer;
+  }
