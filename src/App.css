@@ -1,8 +1,6 @@
 
 
   .arrow-icon{
-    margin-left: 50%;
-    transform: translateX(-50%);
     cursor: pointer;
   }
   .loader-container{
@@ -12,6 +10,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  #loader{
+    display: flex;
+    width: 300px;
+    height: auto;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    flex-direction: column;
   }
   .movie{
     width: 300px;
