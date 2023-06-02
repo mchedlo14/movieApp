@@ -1,24 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import './Trending.css'
+import './Trending.css';
+import { fetchTrendingMovies } from '../../utils/api';
+
 const IMG_API = 'https://image.tmdb.org/t/p/w1280';
-const TRENDING_API = 'https://api.themoviedb.org/3/trending/movie/week?api_key=fb1f301ce530a9bb513825b9f44b9df1';
 
 const Trending = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
 
   useEffect(() => {
-    const fetchTrendingMovies = async () => {
-      try {
-        const response = await fetch(TRENDING_API);
-        const data = await response.json();
-        setTrendingMovies(data.results);
-      } catch (error) {
-        console.log(error);
-      }
+    const fetchData = async () => {
+      const movies = await fetchTrendingMovies();
+      setTrendingMovies(movies);
     };
 
-    fetchTrendingMovies();
+    fetchData();
   }, []);
 
   const handleClick = (movieId) => {

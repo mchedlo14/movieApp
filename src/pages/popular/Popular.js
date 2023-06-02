@@ -1,25 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Popular.css';
+import { fetchPopularMovies } from '../../utils/api';
 
 const IMG_API = 'https://image.tmdb.org/t/p/w1280';
-const POPULAR_API = 'https://api.themoviedb.org/3/movie/popular?api_key=fb1f301ce530a9bb513825b9f44b9df1&page=1';
 
 const Popular = () => {
   const [popularMovies, setPopularMovies] = useState([]);
 
   useEffect(() => {
-    const fetchPopularMovies = async () => {
-      try {
-        const response = await fetch(POPULAR_API);
-        const data = await response.json();
-        setPopularMovies(data.results);
-      } catch (error) {
-        console.log(error);
-      }
+    const fetchData = async () => {
+      const movies = await fetchPopularMovies();
+      setPopularMovies(movies);
     };
 
-    fetchPopularMovies();
+    fetchData();
   }, []);
 
   const handleClick = (movieId) => {

@@ -16,7 +16,7 @@ const Header = ({ setSearchTerm, searchTerm }) => {
                     <li onClick={() => navigate('/')}>Home</li>
                     <li onClick={() => navigate('/upcoming')}>Up Coming</li>
                     <li onClick={() => navigate('/trending')}>Trending</li>
-                    <li>Popular</li>
+                    <li onClick={() => navigate('/popular')}>Popular</li>
 
                 </ul>
             </nav>

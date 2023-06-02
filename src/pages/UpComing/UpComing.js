@@ -1,30 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import '../../App.css'
+import { fetchUpcomingMovies } from '../../utils/api';
+import '../../App.css';
+
 const IMG_API = 'https://image.tmdb.org/t/p/w1280';
-const UPCOMING_API = 'https://api.themoviedb.org/3/movie/upcoming?api_key=fb1f301ce530a9bb513825b9f44b9df1&page=1';
 
 const UpComing = () => {
   const [upcomingMovies, setUpcomingMovies] = useState([]);
 
   useEffect(() => {
-    const fetchUpcomingMovies = async () => {
-      try {
-        const response = await fetch(UPCOMING_API);
-        const data = await response.json();
-        setUpcomingMovies(data.results);
-      } catch (error) {
-        console.log(error);
-      }
+    const fetchMovies = async () => {
+      const movies = await fetchUpcomingMovies();
+      setUpcomingMovies(movies);
     };
 
-    fetchUpcomingMovies();
+    fetchMovies();
   }, []);
 
   const handleClick = (movieId) => {
     console.log(movieId);
   };
-
   return (
     <div className='movie-container'>
 
