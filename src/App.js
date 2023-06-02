@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import Movie from './components/Movie';
-import Slider from './components/Slider';
+import React, { useState, useEffect, useRef } from 'react';
+import Movie from './components/movie/Movie';
 import Header from './components/Header/Header';
-
+import './App.css'
+import downArrowIcon from './assets/icons/down-arrow.svg'
+import Loader from './components/Loader/Loader';
 const FEATURED_API = 'https://api.themoviedb.org/3/discover/movie?api_key=fb1f301ce530a9bb513825b9f44b9df1&page=';
 
 const SEARCH_API =
@@ -14,6 +15,7 @@ const App = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const loaderRef = useRef(null);
 
   const fetchMovieData = async (page) => {
     try {
@@ -84,17 +86,17 @@ const App = () => {
 
     if (isLoading) return;
 
-    const loader = document.getElementById('loader');
-    if (loader) {
-      observer.observe(loader);
+    if (loaderRef.current) {
+      observer.observe(loaderRef.current);
     }
 
     return () => {
-      if (loader) {
-        observer.unobserve(loader);
+      if (loaderRef.current) {
+        observer.unobserve(loaderRef.current);
       }
     };
   }, [isLoading]);
+
 
   return (
     <>
@@ -106,15 +108,17 @@ const App = () => {
         <Movie movieData={movies} />
       </div>
 
-      {isLoading && <div id="loader">Loading...</div>}
+      <div className='loader-container'>
+        {isLoading && <Loader />}
+      </div>
 
       {currentPage < totalPages && !isLoading && (
         <div id="loader" style={{ marginTop: '20px' }}>
-          <button onClick={loadMoreMovies}>Load More</button>
+          <img onClick={loadMoreMovies} src={downArrowIcon} alt='arrow icon' className='arrow-icon' />
+
         </div>
       )}
 
-      <h5 style={{ textAlign: 'center' }}>CopyRight by Levan Mtchedlishvili</h5>
     </>
   );
 };
