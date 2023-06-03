@@ -4,6 +4,7 @@ import './App.css';
 import downArrowIcon from './assets/icons/down-arrow.svg';
 import searchIcon from './assets/icons/search.svg';
 import Loader from './components/Loader/Loader';
+import ErrorComponent from './components/Eroor/ErrorComponent';
 
 const FEATURED_API =
   'https://api.themoviedb.org/3/discover/movie?api_key=fb1f301ce530a9bb513825b9f44b9df1&page=';
@@ -17,13 +18,21 @@ const App = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const loaderRef = useRef(null);
+  const [isData,setIsData] = useState(false)
 
   const fetchMovieData = async (page) => {
     try {
       const response = await fetch(FEATURED_API + page);
       const data = await response.json();
-      setTotalPages(data.total_pages);
-      return data.results;
+      if(data.results.length === 0){
+        setIsData(true)
+        return;
+      }else{
+        setTotalPages(data.total_pages);
+        setIsData(false)
+        return data.results;
+
+      }
     } catch (error) {
       console.log(error);
       return [];
@@ -34,9 +43,18 @@ const App = () => {
     try {
       const response = await fetch(SEARCH_API + searchTerm);
       const data = await response.json();
-      setMovies(data.results);
+      if(data.results.length === 0){
+        setIsData(true)
+        return;
+      }else{
+        setTotalPages(data.total_pages);
+        setIsData(false)
+        setMovies(data.results);
+        return data.results;
+
+      }
     } catch (error) {
-      console.log(error);
+      return;
     }
   };
 
@@ -112,7 +130,12 @@ const App = () => {
       </form>
 
       <div className="movie-container">
-        <Movie movieData={movies} />
+        {
+          !isData ?<Movie movieData={movies} />
+          :
+            <ErrorComponent />
+          }
+        
       </div>
 
       <div className="loader-container">{isLoading && <Loader />}</div>
