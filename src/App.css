@@ -10,6 +10,11 @@
   justify-content: center;
   align-items: center;
 }
+.auth-img{
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
 
 #loader {
   display: flex;
@@ -47,7 +52,10 @@
   margin-top: 80px;
 
 }
-
+.favorite-text{
+  text-align: center;
+  font-size: 30px;
+}
 .movie-info {
   display: flex;
   justify-content: space-between;
@@ -131,7 +139,28 @@
   }
 }
 
-
+.favorite-button{
+  background-color: #fff;
+  border: 1px solid #25282b;
+  border-radius: 24px;
+  color: #25282b;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  height: 43px;
+  margin-left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  width: 150px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+.favorite-button:hover {
+  background-color: #252956;
+  border: 0;
+  transition: .8s;
+  color: #fff;
+}
 .loadmore-btn {
   background-color: #fff;
   border: 1px solid #25282b;

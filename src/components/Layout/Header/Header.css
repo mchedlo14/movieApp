@@ -35,3 +35,11 @@ li:hover{
     display: flex;
     gap: 15px;
   }
+  .switch--wrapper{
+    display:flex;
+    align-items: center;
+    gap: 30px;
+  }
+  .account-text{
+    cursor: pointer;
+  }

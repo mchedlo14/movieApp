@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import Movie from './components/movie/Movie';
 import './App.css';
 import downArrowIcon from './assets/icons/down-arrow.svg';
-import searchIcon from './assets/icons/search.svg';
 import Loader from './components/Loader/Loader';
 import ErrorComponent from './components/Eroor/ErrorComponent';
 
