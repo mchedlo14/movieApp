@@ -5,7 +5,7 @@ import logo from '../../../assets/icons/film-reel.svg';
 import SwitchIcon from '../../../assets/images/switch.png';
 import GoogleIcon from '../../../assets/images/google.png';
 import { signInWithPopup, signOut } from 'firebase/auth';
-import { auth, provider } from '../../../firebase';
+import { auth, provider } from '../../../firebase/firebase';
 import useAuthStore from './authStore';
 
 const Header = () => {
