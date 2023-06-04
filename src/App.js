@@ -146,7 +146,7 @@ const App = () => {
             onClick={loadMoreMovies}
             src={downArrowIcon}
           >
-            Load More
+            Load Movies
           </button>
         </div>
       )}
